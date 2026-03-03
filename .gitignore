@@ -50,3 +50,5 @@ results/
 .claude/
 
 .history
+
+prompts/raw_prompts.yml
