@@ -337,3 +337,4 @@ python src/evaluate.py
  - Gestao e versionamento de prompt
    - Visão geral com prompt.yaml
    - Executando testes automatizados
+   - Fazendo push de um prompt [07:01]
