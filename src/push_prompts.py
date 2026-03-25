@@ -13,6 +13,7 @@ SIMPLIFICADO: Código mais limpo e direto ao ponto.
 import os
 import sys
 from dotenv import load_dotenv
+from langsmith import Client
 from langchain import hub
 from langchain_core.prompts import ChatPromptTemplate
 from utils import load_yaml, check_env_vars, print_section_header
@@ -21,6 +22,14 @@ load_dotenv()
 
 
 def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
+
+    client = Client()
+    url = client.push_prompt(
+        name=prompt_name,
+        prompt=ChatPromptTemplate.from_messages(prompt_data["messages"]),
+        description=prompt_data.get("description", ""),
+        tags=prompt_data.get("tags", []),
+    )
     """
     Faz push do prompt otimizado para o LangSmith Hub (PÚBLICO).
 

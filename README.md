@@ -321,3 +321,19 @@ python src/evaluate.py
 - **Não altere os datasets de avaliação** - apenas os prompts em `prompts/bug_to_user_story_v2.yml`
 - **Itere, itere, itere** - é normal precisar de 3-5 iterações para atingir 0.9 em todas as métricas
 - **Documente seu processo** - a jornada de otimização é tão importante quanto o resultado final
+
+---
+
+## Técnicas Aplicadas (Fase 2)
+
+   - Quais técnicas avançadas você escolheu para refatorar os prompts
+   - Foram usadas as técnicas  **Role Prompting** e o **Chain of Thought (CoT)** para estruturar o raciocínio do modelo e definir uma persona clara.
+   - Exemplos práticos das técnicas aplicadas:
+       - **Role Prompting**: "Você é um assistente que ajuda a transformar relatos de bugs de usuários em tarefas para desenvolvedores."
+       - **Chain of Thought**: "Analise o relato de bug abaixo em detalhes, passo a passo e crie uma user story a partir dele, listando as etapas de correção do bug."
+
+
+## Excluir - Videos
+ - Gestao e versionamento de prompt
+   - Visão geral com prompt.yaml
+   - Executando testes automatizados

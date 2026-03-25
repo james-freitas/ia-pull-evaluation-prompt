@@ -19,7 +19,17 @@ def load_prompts(file_path: str):
 class TestPrompts:
     def test_prompt_has_system_prompt(self):
         """Verifica se o campo 'system_prompt' existe e não está vazio."""
-        pass
+        prompts = load_prompts("prompts/bug_to_user_story_v2.yml")
+
+        assert isinstance(prompts, dict), "O arquivo deve conter um dicionário de prompts"
+
+        for prompt_name, prompt_data in prompts.items():
+            assert "system_prompt" in prompt_data, f"{prompt_name} não possui 'system_prompt'"
+
+            system_prompt = prompt_data["system_prompt"]
+
+            assert isinstance(system_prompt, str), f"{prompt_name} 'system_prompt' deve ser string"
+            assert system_prompt.strip() != "", f"{prompt_name} 'system_prompt' não pode estar vazio"
 
     def test_prompt_has_role_definition(self):
         """Verifica se o prompt define uma persona (ex: "Você é um Product Manager")."""
