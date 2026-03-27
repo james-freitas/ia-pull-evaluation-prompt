@@ -333,6 +333,14 @@ python src/evaluate.py
        - **Chain of Thought**: "Analise o relato de bug abaixo em detalhes, passo a passo e crie uma user story a partir dele, listando as etapas de correção do bug."
 
 
+## How to run
+
+python3 src/push_prompts.py
+
+---
+Link prompt acesso publico: https://smith.langchain.com/hub/bug-to-user-story-using-chain-of-thought/bug_to_user_story_with_chain_of_thought
+
+
 ## Excluir - Videos
  - Gestao e versionamento de prompt
    - Visão geral com prompt.yaml

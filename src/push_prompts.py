@@ -20,49 +20,43 @@ from utils import load_yaml, check_env_vars, print_section_header
 
 load_dotenv()
 
-
 def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
-
     """
-    Faz push do prompt otimizado para o LangSmith Hub (PÚBLICO).
-
-    Args:
-        prompt_name: Nome do prompt
-        prompt_data: Dados do prompt
-
-    Returns:
-        True se sucesso, False caso contrário
+    Faz push do prompt para o LangSmith usando Client (com metadata).
     """
     try:
         print_section_header(f"🚀 Enviando prompt: {prompt_name}")
 
-        # 1. Criar template de chat
+        client = Client()
+
+        # 1. Criar prompt template
         prompt = ChatPromptTemplate.from_messages([
             ("system", prompt_data["system_prompt"]),
             ("human", prompt_data["user_prompt"]),
         ])
 
-        # 2. Preparar metadados
+        # 2. Nome com versionamento
+        repo_name = f"{prompt_name}:{prompt_data.get('version', 'v1')}"
+
+        # 3. Preparar metadata
         metadata = {
             "description": prompt_data.get("description", ""),
             "tags": prompt_data.get("tags", []),
-            "version": prompt_data.get("version", "v1"),
+            "created_at": prompt_data.get("created_at"),
         }
 
-        # 3. Nome final no hub
-        # Ex: "bug_to_user_story_with_chain_of_thought"
-        repo_name = prompt_name
-
-        # 4. Push para LangChain Hub (LangSmith Hub)
-        url = hub.push(
+        # 4. Push usando Client
+        response = client.push_prompt(
             repo_name,
-            prompt,
+            object=prompt,
+            tags=[
+                f"version: {prompt_data.get('version', 'v1')}",
+            ],
             description=metadata["description"],
-            tags=metadata["tags"],
         )
 
-        print(f"✅ Prompt enviado com sucesso!")
-        print(f"🔗 URL: {url}")
+        print("✅ Prompt enviado com sucesso!")
+        print(f"🔗 URL: {response.url if hasattr(response, 'url') else response}")
 
         return True
 
@@ -112,9 +106,10 @@ def validate_prompt(prompt_data: dict) -> tuple[bool, list]:
 
 def main():
     """Função principal"""
+
+    print_section_header("📦 Iniciando push de prompts...")
     
-    if __name__ == "__main__":
-        prompts = load_yaml("prompts/bug_to_user_story_v2.yml")
+    prompts = load_yaml("prompts/bug_to_user_story_v2.yml")
 
     for name, data in prompts.items():
         is_valid, errors = validate_prompt(data)
@@ -126,3 +121,7 @@ def main():
             continue
 
         push_prompt_to_langsmith(name, data)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
