@@ -1,15 +1,3 @@
-"""
-Script para fazer push de prompts otimizados ao LangSmith Prompt Hub.
-
-Este script:
-1. Lê os prompts otimizados de prompts/bug_to_user_story_v2.yml
-2. Valida os prompts
-3. Faz push PÚBLICO para o LangSmith Hub
-4. Adiciona metadados (tags, descrição, técnicas utilizadas)
-
-SIMPLIFICADO: Código mais limpo e direto ao ponto.
-"""
-
 import os
 import sys
 from dotenv import load_dotenv
@@ -50,7 +38,7 @@ def push_prompt_to_langsmith(prompt_name: str, prompt_data: dict) -> bool:
             repo_name,
             object=prompt,
             tags=[
-                f"version: {prompt_data.get('version', 'v1')}",
+                prompt_data.get("version", "v1.0.0"),
             ],
             description=metadata["description"],
         )
