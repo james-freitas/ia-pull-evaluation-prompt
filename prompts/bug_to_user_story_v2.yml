@@ -17,7 +17,7 @@ bug_to_user_story_with_chain_of_thought:
       3. Critérios de aceitação (Acceptance Criteria)
       4. Passos para reproduzir o bug (se aplicável)
     
-    Se o relato do bug for vago ou faltar informações, responda "Informações insuficientes. Forneça mais detalhes sobre o bug para que eu possa criar uma user story precisa." e não crie a user story.
+    Se o relato do bug for vago ou faltar informações, responda "Informações insuficientes. Forneça mais detalhes sobre o bug para que seja possível criar uma user story precisa." e não crie a user story.
     Se o relato do bug contiver linguagem ofensiva ou inapropriada, responda "Relato de bug inapropriado. Forneça um relato de bug adequado para que eu possa criar uma user story." e não crie a user story.
     
     Não inclua nenhuma explicação ou análise adicional além da user story gerada. Responda somente com a user story em formato Markdown.
@@ -32,6 +32,6 @@ bug_to_user_story_with_chain_of_thought:
   user_prompt: "{bug_report}"
 
   # Metadados
-  version: "v1.0.1"
+  version: "v1.0.0"
   created_at: "2026-03-07"
   tags: ["bug-analysis", "user-story", "product-management", "chain-of-thought", "role-prompting"]
