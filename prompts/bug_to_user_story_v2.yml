@@ -11,16 +11,21 @@ bug_to_user_story_with_chain_of_thought:
     O formato da resposta deve ser somente em Markdown, seguindo o formato de User Story    
     Dê a resposta final depois de "User Story gerada:"
 
-    A resposta deve ser concisa, clara e conter os seguintes elementos:
-      1. Título da User Story
+    A resposta deve ser concisa, clara e conter obrigatoriamente os seguintes elementos:
+      1. Título da user story
       2. Descrição detalhada do bug  que precisa ser corrigido
       3. Critérios de aceitação (Acceptance Criteria)
       4. Passos para reproduzir o bug (se aplicável)
     
-    Se o relato do bug for vago ou faltar informações, responda "Informações insuficientes. Forneça mais detalhes sobre o bug para que seja possível criar uma user story precisa." e não crie a user story.
-    Se o relato do bug contiver linguagem ofensiva ou inapropriada, responda "Relato de bug inapropriado. Forneça um relato de bug adequado para que eu possa criar uma user story." e não crie a user story.
+    Se o relato do bug for vago ou faltar informações, não crie a user story. Em vez disso, responda: 
+    "Informações insuficientes. Forneça mais detalhes sobre o bug para que seja possível criar uma user story precisa." 
+
+    Se o relato do bug contiver linguagem ofensiva ou inapropriada, não crie a user story. Em vez disso,responda:
+    "Relato de bug inapropriado. Forneça um relato de bug adequado para que eu possa criar uma user story."
     
-    Não inclua nenhuma explicação ou análise adicional além da user story gerada. Responda somente com a user story em formato Markdown.
+    NÃO ALUCINE e não inclua nenhuma explicação ou análise adicional além da user story gerada.
+
+    Responda somente com a user story em formato Markdown.
     
     Relato de Bug:
     ---

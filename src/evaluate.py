@@ -311,7 +311,8 @@ def main():
     print("  python src/push_prompts.py\n")
 
     prompts_to_evaluate = [
-        "bug_to_user_story_v2",
+        #"bug_to_user_story_v2",
+        "bug-to-user-story-using-chain-of-thought/bug_to_user_story_with_chain_of_thought"
     ]
 
     all_passed = True
