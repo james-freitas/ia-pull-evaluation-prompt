@@ -7,72 +7,85 @@ O objetivo deste desafio é aplicar técnicas avançadas de prompt engineering p
 
 ---
 
+## Técnicas Aplicadas
 
-### 5. Testes de Validação
+   - Neste desafio, foram usadas as técnicas  **Role Prompting** e o **Few-shot** 
+   
 
-**O que você deve fazer:** Edite o arquivo `tests/test_prompts.py` e implemente, no mínimo, os 6 testes abaixo usando `pytest`:
+   ### Role Prompting
+   
+   - O **Role Prompting** foi utilizado para definir uma persona clara para o modelo, de forma a controlar o tom, estilo e abordagem da resposta. 
 
-- `test_prompt_has_system_prompt`: Verifica se o campo existe e não está vazio.
-- `test_prompt_has_role_definition`: Verifica se o prompt define uma persona (ex: "Você é um Product Manager").
-- `test_prompt_mentions_format`: Verifica se o prompt exige formato Markdown ou User Story padrão.
-- `test_prompt_has_few_shot_examples`: Verifica se o prompt contém exemplos de entrada/saída (técnica Few-shot).
-- `test_prompt_no_todos`: Garante que você não esqueceu nenhum `[TODO]` no texto.
-- `test_minimum_techniques`: Verifica (através dos metadados do yaml) se pelo menos 2 técnicas foram listadas.
+   - Exemplo prático da técnica aplicada:
 
-**Como validar:**
+     ```
+     Você é um Product Manager sênior escrevendo User Stories no padrão ágil.
+     ```
+   
+   ### Few-shot Learning
 
-```bash
-pytest tests/test_prompts.py
-```
+   - O **Few-shot Learning** foi aplicado para fornecer exemplos claros de entrada / saída para ajudar o modelo a entender exatamente o formato e o tipo de resposta esperada.
 
----
+   - Exemplo prático da técnica aplicada:
+   
+      ```
+      ## EXEMPLO 1 — SIMPLES
 
-## Estrutura obrigatória do projeto
+      Relato de Bug:
+      Botão de adicionar ao carrinho não funciona no produto ID 1234.
 
-Faça um fork do repositório base: **[Clique aqui para o template](https://github.com/devfullcycle/mba-ia-pull-evaluation-prompt)**
+      User Story:
 
-```
-desafio-prompt-engineer/
-├── .env.example              # Template das variáveis de ambiente
-├── requirements.txt          # Dependências Python
-├── README.md                 # Sua documentação do processo
-│
-├── prompts/
-│   ├── bug_to_user_story_v1.yml       # Prompt inicial (após pull)
-│   └── bug_to_user_story_v2.yml # Seu prompt otimizado
-│
-├── src/
-│   ├── pull_prompts.py       # Pull do LangSmith
-│   ├── push_prompts.py       # Push ao LangSmith
-│   ├── evaluate.py           # Avaliação automática
-│   ├── metrics.py            # 4 métricas implementadas
-│   ├── dataset.py            # 15 exemplos de bugs
-│   └── utils.py              # Funções auxiliares
-│
-├── tests/
-│   └── test_prompts.py       # Testes de validação
-│
-```
+      Como um cliente navegando na loja, eu quero adicionar produtos ao meu carrinho de compras, para que eu possa continuar comprando e finalizar minha compra depois.
 
-**O que você vai criar:**
+      Critérios de Aceitação:
+      - Dado que estou visualizando um produto
+      - Quando clico no botão "Adicionar ao Carrinho"
+      - Então o produto deve ser adicionado ao carrinho
+      - E devo ver uma confirmação visual
+      - E o contador do carrinho deve ser atualizado
 
-- `prompts/bug_to_user_story_v2.yml` - Seu prompt otimizado
-- `tests/test_prompts.py` - Seus testes de validação
-- `src/pull_prompt.py` Script de pull do repositório da fullcycle
-- `src/push_prompt.py` Script de push para o seu repositório
-- `README.md` - Documentação do seu processo de otimização
+      ---
 
-**O que já vem pronto:**
+      ## EXEMPLO 2 — SIMPLES
 
-- Dataset com 15 bugs (5 simples, 7 médios, 3 complexos)
-- 4 métricas específicas para Bug to User Story
-- Suporte multi-provider (OpenAI e Gemini)
+      Relato de Bug:
+      No iOS, ao girar o celular para landscape, o layout da tela de perfil fica quebrado.
 
-## Repositórios úteis
+      User Story:
 
-- [Repositório boilerplate do desafio](https://github.com/devfullcycle/desafio-prompt-engineer/)
-- [LangSmith Documentation](https://docs.smith.langchain.com/)
-- [Prompt Engineering Guide](https://www.promptingguide.ai/)
+      Como um usuário de iOS, eu quero visualizar minha tela de perfil em modo paisagem, para que eu possa usar o app em qualquer orientação sem problemas visuais.
+
+      Critérios de Aceitação:
+      - Dado que estou na tela de perfil no iOS
+      - Quando giro o dispositivo para modo paisagem
+      - Então o layout deve se adaptar corretamente
+      - E todos os elementos devem permanecer visíveis e alinhados
+      - E não deve haver sobreposição de componentes
+
+      ---
+      ```
+
+## (WIP) Resultados Finais 
+
+   - Link público do seu dashboard do LangSmith mostrando as avaliações
+   - Screenshots das avaliações com as notas mínimas de 0.9 atingidas
+   - Tabela comparativa: prompts ruins (v1) vs prompts otimizados (v2)
+
+## (WIP) Como Executar
+
+   - Instruções claras e detalhadas de como executar o projeto
+   - Pré-requisitos e dependências
+   - Comandos para cada fase do projeto
+
+## (WIP) Evidências no LangSmith:
+   - Link público (ou screenshots) do dashboard do LangSmith
+   - Devem estar visíveis:
+
+     - Dataset de avaliação com ≥ 20 exemplos
+     - Execuções dos prompts v1 (ruins) com notas baixas
+     - Execuções dos prompts v2 (otimizados) com notas ≥ 0.9
+     - Tracing detalhado de pelo menos 3 exemplos
 
 ## VirtualEnv para Python
 
@@ -86,29 +99,6 @@ pip install -r requirements.txt
 
 ---
 
-## Ordem de execução
-
-### 1. Executar pull dos prompts ruins
-
-```bash
-python src/pull_prompts.py
-```
-
-### 2. Refatorar prompts
-
-Edite manualmente o arquivo `prompts/bug_to_user_story_v2.yml` aplicando as técnicas aprendidas no curso.
-
-### 3. Fazer push dos prompts otimizados
-
-```bash
-python src/push_prompts.py
-```
-
-### 5. Executar avaliação
-
-```bash
-python src/evaluate.py
-```
 
 ---
 
@@ -163,12 +153,6 @@ python src/evaluate.py
 
 ---
 
-## Técnicas Aplicadas (Fase 2)
-
-   - Foram usadas as técnicas  **Role Prompting** e o **Chain of Thought (CoT)** para estruturar o raciocínio do modelo e definir uma persona clara.
-   - Exemplos práticos das técnicas aplicadas:
-       - **Role Prompting**: "Você é um assistente que ajuda a transformar relatos de bugs de usuários em tarefas para desenvolvedores."
-       - **Chain of Thought**: "Analise o relato de bug abaixo em detalhes, passo a passo e crie uma user story a partir dele, listando as etapas de correção do bug."
 
 
 ## How to run

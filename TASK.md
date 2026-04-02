@@ -324,18 +324,4 @@ python src/evaluate.py
 
 ---
 
-## Técnicas Aplicadas (Fase 2)
-
-   - Foram usadas as técnicas  **Role Prompting** e o **Few-shot** para fornecer exemplos claros de entrada / saída e definir uma persona clara.
-   - Exemplos práticos das técnicas aplicadas:
-       - **Role Prompting**: "Você é um assistente que ajuda a transformar relatos de bugs de usuários em tarefas para desenvolvedores."
-       - **Few Shot**: "Analise o relato de bug abaixo em detalhes, passo a passo e crie uma user story a partir dele, listando as etapas de correção do bug."
-
-
-## How to run
-
-python3 src/push_prompts.py
-
----
-Link prompt acesso publico: https://smith.langchain.com/hub/bug-to-user-story-using-chain-of-thought/bug_to_user_story_with_chain_of_thought
 
