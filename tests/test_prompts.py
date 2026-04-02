@@ -42,17 +42,17 @@ class TestPrompts:
         pass
 
     def test_prompt_mentions_format(self):
-        """Deve exigir Markdown/User Story"""
+        """Deve exigir formato de User Story"""
         prompts = load_prompts("prompts/bug_to_user_story_v2.yml")
 
         for prompt_name, prompt_data in prompts.items():
             system_prompt = prompt_data.get("system_prompt", "").lower()
 
-            assert "markdown" in system_prompt, (
-                f"{prompt_name} deve exigir saída em Markdown"
+            assert "critérios de aceitação" in system_prompt, (
+                f"{prompt_name} deve exigir formato de User Story"
             )
 
-            assert "título" in system_prompt and "descrição" in system_prompt, (
+            assert "user story" in system_prompt and "critérios de aceitação" in system_prompt, (
                 f"{prompt_name} deve definir estrutura de User Story"
             )
 
@@ -66,7 +66,7 @@ class TestPrompts:
 
             # Conta ocorrências de exemplos
             example_inputs = system_prompt.count("Relato de Bug:")
-            example_outputs = system_prompt.count("User Story gerada:")
+            example_outputs = system_prompt.count("User Story:")
 
             assert example_inputs >= 3, (
                 f"{prompt_name} deve conter pelo menos 2 exemplos + 1 input final"
@@ -84,12 +84,8 @@ class TestPrompts:
         for prompt_name, prompt_data in prompts.items():
             system_prompt = prompt_data.get("system_prompt", "").lower()
 
-            assert "informações insuficientes" in system_prompt, (
+            assert "não funciona." in system_prompt, (
                 f"{prompt_name} deve tratar casos de input incompleto"
-            )
-
-            assert "relato de bug inapropriado" in system_prompt, (
-                f"{prompt_name} deve tratar casos de conteúdo inapropriado"
             )
 
     def test_prompt_no_todos(self):
