@@ -312,7 +312,7 @@ def main():
 
     prompts_to_evaluate = [
         #"bug_to_user_story_v2",
-        "bug-to-user-story-using-chain-of-thought/bug_to_user_story_using_fewshot"
+        "awjamesfrj/bug_to_user_story_using_fewshot"
     ]
 
     all_passed = True
